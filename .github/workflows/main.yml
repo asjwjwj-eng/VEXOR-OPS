@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          unzip -o VexorOps_Abod_Android_APK.zip -d project
+          unzip -o VexorOps_v2.zip -d project
           printf '\ndependencies { implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.22")) }\n' >> project/app/build.gradle
       - uses: actions/setup-java@v4
         with:
@@ -20,3 +20,4 @@ jobs:
         with:
           name: VexorOps-Abod-APK
           path: project/app/build/outputs/apk/debug/app-debug.apk
+                    
