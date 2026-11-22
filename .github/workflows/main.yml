@@ -1,0 +1,20 @@
+name: Build VEXOR OPS APK
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: unzip -o VexorOps_Abod_Android_APK.zip -d project
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+      - run: cd project && gradle assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: VexorOps-Abod-APK
+          path: project/app/build/outputs/apk/debug/app-debug.apk
